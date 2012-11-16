@@ -1,0 +1,3 @@
+May 10, 2012
+
+This is a wrapper for the bwa 0.59 program that automatically splits the input files across multiple nodes on the Lonestar cluster at TACC. It uses the TACC Parametric Launcher to manage running the parallel alignment steps.

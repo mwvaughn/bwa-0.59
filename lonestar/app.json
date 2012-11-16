@@ -1,0 +1,278 @@
+{"name":"bwa-lonestar",
+ "parallelism":"parallel",
+ "version":"0.5.9",
+ "helpURI":"http://bio-bwa.sourceforge.net/",
+ "label":"BWA@Lonestar",
+ "shortDescription":"bwa 0.5.9 is a next gen sequence aligner",
+ "longDescription":"",
+ "author":"Matthew Vaughn",
+ "tags":["next-gen","aligner"],
+ "ontology":["http://sswapmeet.sswap.info/agave/apps/Application"],
+ "executionHost":"lonestar4.tacc.teragrid.org",
+ "executionType":"HPC",
+ "deploymentPath":"/iplant/home/vaughn/applications/bwa-0.59/lonestar",
+ "templatePath":"wrapper.sh",
+ "testPath":"library/test.sh",
+ "checkpointable":"false",
+ "modules":["purge","load TACC","load launcher","load samtools/0.1.18","load irods"],
+ "inputs":[
+    {"id":"query1",
+     "value":
+        {"default":"",
+         "validator":"",
+         "required":true,
+         "visible":true},
+     "details":
+        {"label":"Query FASTQ 1",
+         "description":""},
+     "semantics":
+        {"ontology":["http://sswapmeet.sswap.info/mime/text/X-fastq"],
+         "minCardinality":1,
+         "maxCardinality":1,
+         "fileTypes":["fastq-0"]}},
+    {"id":"query2",
+     "value":
+        {"default":"",
+         "validator":"",
+         "required":false,
+         "visible":true},
+     "details":
+        {"label":"Query FASTQ 2",
+         "description":""},
+     "semantics":
+        {"ontology":["http://sswapmeet.sswap.info/mime/text/X-fastq"],
+         "minCardinality":1,
+         "maxCardinality":1,
+         "fileTypes":["fastq-0"]}},
+    {"id":"databaseFasta",
+     "value":
+        {"default":"",
+         "validator":"",
+         "required":true,
+         "visible":true},
+     "details":
+        {"label":"Genome database FASTA file",
+         "description":""},
+     "semantics":
+        {"ontology":["http://sswapmeet.sswap.info/mime/text/X-multiFasta", "http://sswapmeet.sswap.info/mime/text/X-fasta"],
+         "minCardinality":1,
+         "maxCardinality":1,
+         "fileTypes":["fasta-0"]}}],
+ "parameters":[
+    {"id":"mismatchTolerance",
+     "value":
+        {"default":0.04,
+         "validator":"",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Max #diff (int) or missing prob under 0.02 err rate (float)",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:float"]}},
+    {"id":"maxGapOpens",
+     "value":
+        {"default":"1",
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Maximum number or fraction of gap opens",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"maxGapExtensions",
+     "value":
+        {"default":"-1",
+         "validator":"",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Maximum number of gap extensions, -1 for disabling long gaps",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:short"]}},
+    {"id":"noEndIndel",
+     "value":
+        {"default":"5",
+         "validator":"",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Do not put an indel within INT bp towards the ends",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"maxOccLongDeletion",
+     "value":
+        {"default":"10",
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Maximum occurrences for extending a long deletion",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"seedLength",
+     "value":
+        {"default":32,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Seed length",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"maxDifferenceSeed",
+     "value":
+        {"default":2,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Maximum differences in the seed",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"maxEntriesQueue",
+     "value":
+        {"default":2000000,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Maximum entries in the queue",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"numThreads",
+     "value":
+        {"default":4,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Number of threads",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"mismatchPenalty",
+     "value":
+        {"default":3,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Mismatch penalty",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"gapOpenPenalty",
+     "value":
+        {"default":11,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Gap open penalty",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"gapExtensionPenalty",
+     "value":
+        {"default":4,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Gap extension penalty",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"stopSearching",
+     "value":
+        {"default":30,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Stop searching when there are >INT equally best hits",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"qualityForTrimming",
+     "value":
+        {"default":0,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Quality threshold for read trimming down to 35bp",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"barCodeLength",
+     "value":
+        {"default":0,
+         "validator":"\\d++",
+         "required":false,
+         "visible":true,
+         "type":"number"},
+     "details":
+        {"label":"Length of 5' barcode",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:int"]}},
+    {"id":"logScaleGapPenalty",
+     "value":
+        {"default":false,
+         "validator":"",
+         "required":false,
+         "visible":true,
+         "type":"bool"},
+     "details":
+        {"label":"Log-scaled gap penalty for long deletions",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:boolean"]}},
+    {"id":"nonIterativeMode",
+     "value":
+        {"default":false,
+         "validator":"",
+         "required":false,
+         "visible":true,
+         "type":"bool"},
+     "details":
+        {"label":"Non-iterative mode: search for all n-difference hits (slooow)",
+         "description":""},
+     "semantics":
+        {"ontology":["xs:boolean"]}}],
+ "outputs":[
+    {"id":"outputSAM",
+     "value":
+        {"default":"aligned.sam",
+         "validator":""},
+     "details":
+        {"label":"SAM file",
+         "description":"Sequence alignment file"},
+     "semantics":
+        {"ontology":["http://sswapmeet.sswap.info/mime/text/X-sam"],
+         "minCardinality":"1",
+         "maxCardinality":"1",
+         "fileType":"SAM-0.1.2"}}]}
